@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 
 
 try:
-    t = float(input("Digite o Tempo de Observação:").strip())
     V0 = float(input("Digite V0:").strip())
     alpha = float(input("Digite Alpha:").strip())
+    t = float(input("Digite o Tempo de Observação:").strip())
 
 except ValueError:
     print("Digite um número válido: :(")
