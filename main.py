@@ -50,12 +50,14 @@ plt.axvline(d_maxima, color = "blue", linestyle = "--", linewidth = 0.7)
 
 # Vetores de Velocidade:
 for i in range(len(pontos_tempo)):
+    if i == 0:  # Coloca a legenda apenas no primeiro vetor de velocidade
+        label = "Velocidade (v)"
+    else:
+        label = ""  # Não coloca legenda nos outros vetores de velocidade
+    
     plt.quiver(
         pontos_x[i], pontos_y[i], velocidades_vx[i], velocidades_vy[i],
-        angles = "xy", scale_units = "xy", scale = 1, color = "red", label = "Velocidade (v)"
-
-        if i == 0 
-        else ""
+        angles="xy", scale_units="xy", scale=1, color="red", label=label
     )
 
 #Configurações do Gráfico:
