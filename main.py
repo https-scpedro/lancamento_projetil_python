@@ -60,6 +60,7 @@ for i in range(len(pontos_tempo)):
         angles="xy", scale_units="xy", scale=1, color="red", label=label
     )
 
+
 #Configurações do Gráfico:
 plt.title("Lançamento de Projéteis")
 plt.xlabel("Posisão Horizontal (m)")
@@ -70,4 +71,18 @@ plt.legend()
 plt.grid()
 
 plt.show()
+
+#Mostrar Dados:
+valores_variaveis = np.array([
+    V0, alpha, t, t_total, h_maxima, d_maxima,
+    velocidades_vx[0], velocidades_vy[0], velocidades_resultantes[0], 10, x_values[0], y_values[0]
+], dtype=object)
+
+# Exibindo as variáveis
+for nome, valor in zip(
+    ["V0", "alpha", "t", "t_total", "h_maxima", "d_maxima", "velocidades_vx", 
+     "velocidades_vy", "velocidades_resultantes", "outro_valor", "x_values", "y_values"], 
+    valores_variaveis
+):
+    print(f"{nome}: {valor}")
 
