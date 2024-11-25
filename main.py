@@ -63,7 +63,7 @@ for i in range(len(pontos_tempo)):
 
 #Configurações do Gráfico:
 plt.title("Lançamento de Projéteis")
-plt.xlabel("Posisão Horizontal (m)")
+plt.xlabel("Posição Horizontal (m)")
 plt.ylabel("Posição Vertical (m)")
 plt.axhline(0, color = "black", linewidth = 0.8)
 plt.axvline(0, color = "black", linewidth = 0.8)
