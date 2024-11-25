@@ -41,3 +41,4 @@ def angulo_velocidade(V0, alpha, t):
     Vx = velocidade_horizontal(V0, alpha)
     Vy = velocidade_vertical(V0, alpha, t)
     return np.degrees(np.arctan(Vy / Vx))
+
