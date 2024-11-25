@@ -1,6 +1,7 @@
 import formulas as fl
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 try:
@@ -34,6 +35,7 @@ try:
     velocidades_vx = [fl.velocidade_horizontal(V0, alpha) for t in pontos_tempo]
     velocidades_vy = [fl.velocidade_vertical(V0, alpha, t) for t in pontos_tempo]
     velocidades_resultantes = [fl.velocidade_resultante(V0, alpha, t) for t in pontos_tempo]
+    angulos = [fl.angulo_velocidade(V0, alpha, t) for t in pontos_tempo]
 
 except Exception as e:
     print(f"Erro ao calcular {e}")
@@ -60,6 +62,16 @@ for i in range(len(pontos_tempo)):
         angles="xy", scale_units="xy", scale=1, color="red", label=label
     )
 
+# Pontos de tempo
+for i, t in enumerate(pontos_tempo):
+    plt.text(
+        pontos_x[i],  # Coordenada X do texto
+        pontos_y[i] + 5,  # Coordenada Y do texto, ajustada para não sobrepor o ponto
+        f"{t:.1f}s",  # Texto exibido com 1 casa decimal
+        fontsize=12,  # Tamanho da fonte
+        color="blue",  # Cor do texto
+        ha="center"  # Centraliza o texto sobre o ponto
+    )
 
 #Configurações do Gráfico:
 plt.title("Lançamento de Projéteis")
@@ -73,16 +85,20 @@ plt.grid()
 plt.show()
 
 #Mostrar Dados:
-valores_variaveis = np.array([
-    V0, alpha, t, t_total, h_maxima, d_maxima,
-    velocidades_vx[0], velocidades_vy[0], velocidades_resultantes[0], 10, x_values[0], y_values[0]
-], dtype=object)
+pd.options.display.float_format = "{:.3f}".format
 
-# Exibindo as variáveis
-for nome, valor in zip(
-    ["V0", "alpha", "t", "t_total", "h_maxima", "d_maxima", "velocidades_vx", 
-     "velocidades_vy", "velocidades_resultantes", "outro_valor", "x_values", "y_values"], 
-    valores_variaveis
-):
-    print(f"{nome}: {valor}")
+DADOS_TABELA = {
+    "Tempo (s)": pontos_tempo,
+    "Posição X (m)": pontos_x,
+    "Posição Y (m)": pontos_y,
+    "Vx (m/s)": velocidades_vx,
+    "Vy (m/s)": velocidades_vy,
+    "V (m/s)": velocidades_resultantes,
+    "Ângulo (°)": angulos
+}
 
+
+TABELA = pd.DataFrame(DADOS_TABELA)
+TABELA = TABELA.round(3)
+print("\nTabela de Dados:")
+print(TABELA.to_string(index=False))
